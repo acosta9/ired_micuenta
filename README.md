@@ -14,11 +14,7 @@ Este es un backend robusto y bien estructurado que encapsula la lógica central 
 
 ### El backend toma vida: demo móvil de este backend RESTFUL API
 
-[![Ver demo](micuenta_frontend_demo.png)](micuenta_frontend_demo.mp4)
-
-[![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
-
-https://github.com/user-attachments/assets/a8bad38e-8793-4d83-8d22-d7f4aad5a9df
+[![Ver Demo](https://github.com/user-attachments/assets/39a11ce5-9548-445b-a678-3028dca09c24)](https://github.com/user-attachments/assets/a8bad38e-8793-4d83-8d22-d7f4aad5a9df)
 
 
 ## INFORMACION TECNICA DEL PROYECTO DEBAJO
