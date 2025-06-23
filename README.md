@@ -1,7 +1,23 @@
 # README #
 
-### this project contains the next tasks ###
-* endpoints for micuenta
+Este es un backend robusto y bien estructurado que encapsula la lógica central de una plataforma de gestión de cuentas para usuarios móviles de la empresa Besser Solutions, Desarrollado con un enfoque modular y escalable, este proyecto demuestra dominio en la creación de APIs RESTful, manejo de autenticación segura, y diseño de modelos de datos eficientes.
+
+🛠 Tecnologías utilizadas
+
+* Diseño y Documentación API: Creación de una API RESTful bien estructurada y documentada con Swagger.
+* Seguridad Avanzada: Implementación de autenticación JWT con tokens de acceso y refresco, gestión de sesiones seguras y flujos de recuperación de contraseña por email.
+* Flexibilidad de Base de Datos: Soporte para MySQL y PostgreSQL, con manejo eficiente de conexiones.
+* Funcionalidades de Negocio: Desarrollo de módulos para pagos, transferencias, facturación, retenciones y subida de archivos, con validación de datos exhaustiva.
+* Automatización y Mantenimiento: Configuración de tareas programadas (cron jobs) para sincronización de datos y limpieza, y un sistema de logging con rotación.
+* Calidad y Mantenibilidad: Enfoque en código limpio, configuración por entornos (.env) e internacionalización (i18n), asegurando una aplicación robusta y fácil de mantener.
+
+
+### El backend toma vida: demo móvil de este backend RESTFUL API
+
+<video src="micuenta_frontend_demo.mp4" width="400" controls></video>
+
+
+## INFORMACION TECNICA DEL PROYECTO DEBAJO
 
 ### you need to install this packages using go ###
 * go install github.com/githubnemo/CompileDaemon      # autoreload app on change
