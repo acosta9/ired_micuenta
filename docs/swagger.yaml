@@ -1,0 +1,1678 @@
+basePath: /
+definitions:
+  models.BalanceAvailable:
+    properties:
+      monto_disponible:
+        $ref: '#/definitions/models.Moneda'
+    type: object
+  models.BancoOrigenList:
+    properties:
+      banco:
+        type: string
+      id:
+        type: integer
+      moneda:
+        type: string
+      nombre:
+        type: string
+    type: object
+  models.CuentasBanco:
+    properties:
+      bancos_cliente:
+        items:
+          $ref: '#/definitions/models.BancoOrigenList'
+        type: array
+      metodos_pago_disponibles:
+        items:
+          $ref: '#/definitions/models.FormaPagoList'
+        type: array
+      tasa_cambio:
+        type: number
+    type: object
+  models.ErrorResponse:
+    properties:
+      error: {}
+    type: object
+  models.FacturaDatosBesser:
+    properties:
+      direccion:
+        type: string
+      docid:
+        type: string
+      email:
+        type: string
+      telefono:
+        type: string
+    type: object
+  models.FacturaDetResponse:
+    properties:
+      cantidad:
+        type: number
+      concepto:
+        type: string
+      precio_unitario:
+        $ref: '#/definitions/models.Moneda'
+      suscripcion_detalle:
+        additionalProperties: {}
+        type: object
+      tax_status:
+        type: string
+      total:
+        $ref: '#/definitions/models.Moneda'
+    type: object
+  models.FacturaList:
+    properties:
+      created_at:
+        type: string
+      estatus:
+        type: string
+      factura_id:
+        type: string
+      monto_pagado:
+        $ref: '#/definitions/models.Moneda'
+      monto_total:
+        $ref: '#/definitions/models.Moneda'
+      nreferencia:
+        type: string
+    type: object
+  models.FacturaResponse:
+    properties:
+      base_imponible:
+        $ref: '#/definitions/models.Moneda'
+      created_at:
+        type: string
+      datos_besser:
+        $ref: '#/definitions/models.FacturaDatosBesser'
+      desc_monto_dolar:
+        $ref: '#/definitions/models.Moneda'
+      desc_porcentaje:
+        type: number
+      direccion:
+        type: string
+      docid:
+        type: string
+      estatus:
+        type: string
+      factura_detalle:
+        items:
+          $ref: '#/definitions/models.FacturaDetResponse'
+        type: array
+      factura_id:
+        type: string
+      igtf_base_imponible:
+        $ref: '#/definitions/models.Moneda'
+      igtf_monto:
+        $ref: '#/definitions/models.Moneda'
+      igtf_porcentaje:
+        type: number
+      iva_monto:
+        $ref: '#/definitions/models.Moneda'
+      iva_porcentaje:
+        type: number
+      nreferencia:
+        type: string
+      pagos:
+        items:
+          $ref: '#/definitions/models.PaymentList'
+        type: array
+      razon_social:
+        type: string
+      retenciones:
+        items:
+          $ref: '#/definitions/models.RetencionList'
+        type: array
+      subtotal:
+        $ref: '#/definitions/models.Moneda'
+      telefono:
+        type: string
+      total:
+        $ref: '#/definitions/models.Moneda'
+    type: object
+  models.ForgotPasswordRequest:
+    properties:
+      username:
+        maxLength: 30
+        minLength: 7
+        type: string
+    required:
+    - username
+    type: object
+  models.ForgotPasswordSend:
+    properties:
+      password:
+        maxLength: 30
+        minLength: 7
+        type: string
+      token:
+        type: string
+      username:
+        maxLength: 30
+        minLength: 7
+        type: string
+    required:
+    - password
+    - token
+    - username
+    type: object
+  models.FormaPagoList:
+    properties:
+      banco:
+        type: string
+      detalle: {}
+      id:
+        type: integer
+      metodo_pago:
+        type: string
+      moneda:
+        type: string
+      nombre:
+        type: string
+    type: object
+  models.InfoFaq:
+    properties:
+      pregunta:
+        type: string
+      respuesta:
+        type: string
+    type: object
+  models.InfoLocation:
+    properties:
+      ciudad:
+        type: string
+      coordenadas:
+        type: string
+      direccion:
+        type: string
+      horario:
+        additionalProperties:
+          type: string
+        type: object
+      nombre:
+        type: string
+    type: object
+  models.Moneda:
+    properties:
+      bolivar:
+        type: number
+      dolar:
+        type: number
+    type: object
+  models.PaginatorData:
+    properties:
+      current_page:
+        type: integer
+      next_page:
+        type: integer
+      prev_page:
+        type: integer
+      total_count:
+        type: integer
+      total_pages:
+        type: integer
+    type: object
+  models.PaymentList:
+    properties:
+      created_at:
+        type: string
+      estatus:
+        type: string
+      fecha:
+        type: string
+      metodo_pago:
+        $ref: '#/definitions/models.FormaPagoList'
+      monto_total:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      payment_id:
+        type: string
+      referencia:
+        type: string
+    type: object
+  models.PaymentReq:
+    properties:
+      banco_cliente_id:
+        maxLength: 15
+        minLength: 1
+        type: string
+      cuenta_banco_id:
+        maxLength: 15
+        minLength: 1
+        type: string
+      email:
+        type: string
+      fecha:
+        type: string
+      payment_detail:
+        items:
+          $ref: '#/definitions/models.PaymentReqDetail'
+        type: array
+      profile_id:
+        maxLength: 15
+        minLength: 1
+        type: string
+      referencia:
+        maxLength: 200
+        minLength: 10
+        type: string
+      tasa_cambio:
+        minimum: 0
+        type: number
+      telefono:
+        type: string
+    required:
+    - banco_cliente_id
+    - cuenta_banco_id
+    - fecha
+    - payment_detail
+    - profile_id
+    - referencia
+    - tasa_cambio
+    type: object
+  models.PaymentReqDetail:
+    properties:
+      monto:
+        minimum: 0
+        type: number
+      suscripcion_id:
+        minLength: 1
+        type: string
+    required:
+    - monto
+    - suscripcion_id
+    type: object
+  models.PaymentResponse:
+    properties:
+      banco_cliente:
+        $ref: '#/definitions/models.BancoOrigenList'
+      created_at:
+        type: string
+      datos_besser:
+        $ref: '#/definitions/models.FacturaDatosBesser'
+      email:
+        type: string
+      estatus:
+        type: string
+      facturas:
+        items:
+          $ref: '#/definitions/models.FacturaList'
+        type: array
+      fecha:
+        type: string
+      metodo_pago:
+        $ref: '#/definitions/models.FormaPagoList'
+      monto_total:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      payment_id:
+        type: string
+      profile_id:
+        type: string
+      referencia:
+        type: string
+      suscripciones:
+        items:
+          $ref: '#/definitions/models.SuscripcionShortInfo'
+        type: array
+      tasa_cambio:
+        type: number
+      telefono:
+        type: string
+      updated_at:
+        type: string
+      url_file:
+        type: string
+    type: object
+  models.RetencionList:
+    properties:
+      created_at:
+        type: string
+      estatus:
+        type: string
+      fecha_retencion:
+        type: string
+      monto_retenido:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      num_comprobante:
+        type: string
+      numero_factura:
+        type: string
+      retencion_id:
+        type: string
+      tipo_retencion:
+        type: string
+    type: object
+  models.RetencionResponse:
+    properties:
+      base_imponible:
+        $ref: '#/definitions/models.Moneda'
+      created_at:
+        type: string
+      descripcion:
+        type: string
+      estatus:
+        type: string
+      factura:
+        $ref: '#/definitions/models.FacturaList'
+      fecha_retencion:
+        type: string
+      monto_retenido:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      num_comprobante:
+        type: string
+      porcentaje_retencion:
+        type: number
+      retencion_id:
+        type: string
+      tipo_retencion:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.SuccessResponse:
+    properties:
+      notice:
+        type: string
+      record: {}
+    type: object
+  models.SuccessResponseWithMeta:
+    properties:
+      _meta:
+        $ref: '#/definitions/models.PaginatorData'
+      notice:
+        type: string
+      record: {}
+    type: object
+  models.Suscripcion:
+    properties:
+      coordenadas:
+        type: string
+      costo:
+        $ref: '#/definitions/models.Moneda'
+      estatus:
+        type: boolean
+      excluir_pago:
+        type: boolean
+      id:
+        type: integer
+      ncontrol:
+        type: string
+      renewal_day:
+        type: string
+      saldo:
+        $ref: '#/definitions/models.Moneda'
+      speed_unit:
+        type: string
+      speed_value:
+        type: number
+      tipo_conexion:
+        type: string
+      tipo_servicio:
+        type: string
+      tipo_servicio_acronimo:
+        type: string
+      zona:
+        type: string
+    type: object
+  models.SuscripcionShortInfo:
+    properties:
+      id:
+        type: integer
+      monto_pagado:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      speed_unit:
+        type: string
+      speed_value:
+        type: number
+      tipo_conexion:
+        type: string
+      tipo_servicio:
+        type: string
+      zona:
+        type: string
+    type: object
+  models.TransferList:
+    properties:
+      created_at:
+        type: string
+      descripcion:
+        type: string
+      destinatario_docid:
+        type: string
+      monto:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      transfer_id:
+        type: string
+    type: object
+  models.TransferReq:
+    properties:
+      descripcion:
+        maxLength: 200
+        minLength: 10
+        type: string
+      destinatario_docid:
+        type: string
+      monto:
+        minimum: 0
+        type: number
+      profile_id:
+        maxLength: 15
+        minLength: 1
+        type: string
+    required:
+    - descripcion
+    - destinatario_docid
+    - monto
+    - profile_id
+    type: object
+  models.TransferResponse:
+    properties:
+      created_at:
+        type: string
+      descripcion:
+        type: string
+      destinatario_docid:
+        type: string
+      monto:
+        $ref: '#/definitions/models.Moneda'
+      ncontrol:
+        type: string
+      transfer_id:
+        type: string
+    type: object
+  models.UserChangePassword:
+    properties:
+      password:
+        maxLength: 30
+        minLength: 7
+        type: string
+      username:
+        maxLength: 30
+        minLength: 7
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.UserCredentials:
+    properties:
+      change_passwd:
+        type: boolean
+    type: object
+  models.UserDeviceInfo:
+    properties:
+      manufacturer:
+        maxLength: 30
+        minLength: 7
+        type: string
+      model:
+        maxLength: 30
+        minLength: 7
+        type: string
+      platform:
+        maxLength: 30
+        minLength: 6
+        type: string
+      screen_size:
+        maxLength: 30
+        minLength: 7
+        type: string
+      system:
+        maxLength: 30
+        minLength: 7
+        type: string
+      user_agent:
+        maxLength: 200
+        minLength: 7
+        type: string
+    type: object
+  models.UserProfile:
+    properties:
+      correo:
+        items:
+          type: string
+        type: array
+      direccion:
+        type: string
+      id:
+        type: string
+      nombre:
+        type: string
+      telefono:
+        items:
+          type: string
+        type: array
+      username:
+        type: string
+    type: object
+  models.UserRequest:
+    properties:
+      device_info:
+        $ref: '#/definitions/models.UserDeviceInfo'
+      password:
+        maxLength: 30
+        minLength: 7
+        type: string
+      remember:
+        type: string
+      username:
+        maxLength: 30
+        minLength: 7
+        type: string
+    required:
+    - password
+    - remember
+    - username
+    type: object
+  models.UserResponse:
+    properties:
+      credentials:
+        $ref: '#/definitions/models.UserCredentials'
+      profile:
+        $ref: '#/definitions/models.UserProfile'
+      tokens:
+        $ref: '#/definitions/models.UserToken'
+    type: object
+  models.UserToken:
+    properties:
+      auth:
+        type: string
+      auth_expires_at:
+        type: string
+      refresh:
+        type: string
+      refresh_expires_at:
+        type: string
+    type: object
+host: 127.0.0.1:7003
+info:
+  contact:
+    email: juan9acosta@gmail.com
+    name: Juan Acosta
+    url: https://www.linkedin.com/in/juan-m-acosta-f-54219758/
+  description: service in Go using Gin framework
+  title: MiCuenta Service API
+  version: "1.0"
+paths:
+  /auth/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Updates the user's password after validating the request body
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: Password Change Request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserChangePassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Change user password
+      tags:
+      - Authentication
+  /auth/forgot-password:
+    post:
+      consumes:
+      - application/json
+      description: Sends a password reset email to the user after validating the request
+      parameters:
+      - description: User email for password reset
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ForgotPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "404":
+          description: User Not Found
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Request password reset
+      tags:
+      - Authentication
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticates a user by validating credentials and returning a
+        session token
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        type: string
+      - description: User Login Data
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.UserResponse'
+              type: object
+        "400":
+          description: Invalid Request or Already Logged In
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Authenticate a user
+      tags:
+      - Authentication
+  /auth/logout:
+    get:
+      consumes:
+      - application/json
+      description: Logs out the authenticated user by clearing session data
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+      summary: Logout a user
+      tags:
+      - Authentication
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Refreshes the user's session token if valid and returns a new one
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.UserToken'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Refresh authentication token
+      tags:
+      - Authentication
+  /auth/reset-password:
+    post:
+      consumes:
+      - application/json
+      description: Processes a password reset request and sends recovery instructions
+        to the user
+      parameters:
+      - description: User email for password reset
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ForgotPasswordSend'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password reset instructions sent
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "404":
+          description: User Not Found
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Send password reset instructions
+      tags:
+      - Authentication
+  /banco/formas-de-pago:
+    get:
+      consumes:
+      - application/json
+      description: devuelve un listado de las formas de pago disponibles para el cliente
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.CuentasBanco'
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: listado formas de pago
+      tags:
+      - Banco
+  /cron/clean-old-sessions:
+    get:
+      consumes:
+      - application/json
+      description: cleaning old session of clientes from postgresDB
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_users
+      tags:
+      - Crons
+  /cron/create-clients-passwd:
+    get:
+      consumes:
+      - application/json
+      description: search for all users with password null and set the password the
+        same as the docid
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task create_client_passwd
+      tags:
+      - Crons
+  /cron/sinc-factura-fiscal:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_factura_fiscal
+      tags:
+      - Crons
+  /cron/sinc-prefactura-anulada:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_prefactura_anuladas
+      tags:
+      - Crons
+  /cron/sinc-prefactura-pagadas:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_prefactura_pagadas
+      tags:
+      - Crons
+  /cron/sinc-recibov-anulado:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_recibov_anulado
+      tags:
+      - Crons
+  /cron/sinc-recibov-procesado:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_recibov_procesado
+      tags:
+      - Crons
+  /cron/sinc-retencion:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_retenciones
+      tags:
+      - Crons
+  /cron/sinc-tasa-cambio:
+    get:
+      consumes:
+      - application/json
+      description: busca registros nuevos en la bd de mysql y sincroniza la data a
+        postgres
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      security:
+      - BasicAuth: []
+      summary: Run the task sinc_tasa_cambio
+      tags:
+      - Crons
+  /factura/list:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of facturas with pagination
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of recibos de pago per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponseWithMeta'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.FacturaList'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Listado de facturas
+      tags:
+      - Factura
+  /factura/show:
+    get:
+      consumes:
+      - application/json
+      description: devuelve toda la data relacionada a una factura
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: retencionId (UUID), created_at(timestamptz)
+        in: query
+        name: FacturaReqId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.FacturaResponse'
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: detalle de una factura
+      tags:
+      - Factura
+  /info/accesibilidad:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve Texto con accesibilidad
+      parameters:
+      - description: Tipo de plataforma
+        enum:
+        - movil
+        - web
+        in: query
+        name: tipo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Texto con accesibilidad para la app movil
+      tags:
+      - Info
+  /info/faqs:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve listado de preguntas frecuentes
+      parameters:
+      - description: Tipo de plataforma
+        enum:
+        - movil
+        - web
+        in: query
+        name: tipo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.InfoFaq'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: listado de preguntas frecuentes
+      tags:
+      - Info
+  /info/legal/privacy_policy:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve Texto con politicas de privacidad
+      parameters:
+      - description: Tipo de plataforma
+        enum:
+        - movil
+        - web
+        in: query
+        name: tipo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Texto con politicas de privacidad
+      tags:
+      - Info
+  /info/legal/terminos_y_condiciones:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve Texto con los terminos y condiciones
+      parameters:
+      - description: Tipo de plataforma
+        enum:
+        - movil
+        - web
+        in: query
+        name: tipo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Texto con los terminos y condiciones
+      tags:
+      - Info
+  /info/oficinas:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of oficinas de la empresa con su ubicacion
+      parameters:
+      - description: Tipo de plataforma
+        enum:
+        - movil
+        - web
+        in: query
+        name: tipo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.InfoLocation'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Listado de oficinas
+      tags:
+      - Info
+  /payment/image-upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload an image associated with a payment ID
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: paymentId (UUID), created_at(timestamptz)
+        in: formData
+        name: payment_id
+        required: true
+        type: string
+      - description: Image file to upload
+        in: formData
+        name: image
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Upload image for payment
+      tags:
+      - Payment
+  /payment/list:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of recibos de pagos with pagination
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of records per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponseWithMeta'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.PaymentList'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Listado de recibos de pago
+      tags:
+      - Payment
+  /payment/send:
+    post:
+      consumes:
+      - application/json
+      description: procesa el formulario y valida el mismo, devuelve el id del recibo
+        de pago
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: Payment Data
+        in: body
+        name: payment
+        required: true
+        schema:
+          $ref: '#/definitions/models.PaymentReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.PaymentResponse'
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: endpoint para guardar formulario de pago
+      tags:
+      - Payment
+  /payment/show:
+    get:
+      consumes:
+      - application/json
+      description: devuelve toda la data relacionada a un recibo de pago
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: paymentId (UUID), created_at(timestamptz)
+        in: query
+        name: PaymentReqId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.PaymentResponse'
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: detalle de un recibo de pago
+      tags:
+      - Payment
+  /payment/transfer/balance:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve the balance available to transfer
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.BalanceAvailable'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Saldo disponible para transferir en la cuenta
+      tags:
+      - Payment
+  /payment/transfer/list:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of transferencias with pagination
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of records per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponseWithMeta'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.TransferList'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Listado de transferencias
+      tags:
+      - Payment
+  /payment/transfer/send:
+    post:
+      consumes:
+      - application/json
+      description: procesa el formulario y valida el mismo, devuelve el id de la transferencia
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: Transfer Data
+        in: body
+        name: transfer
+        required: true
+        schema:
+          $ref: '#/definitions/models.TransferReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.TransferResponse'
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: endpoint para guardar formulario de transferencia
+      tags:
+      - Payment
+  /retencion/list:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of retenciones with pagination
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        description: Number of recibos de pago per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponseWithMeta'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.RetencionList'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Listado de retenciones
+      tags:
+      - Retencion
+  /retencion/show:
+    get:
+      consumes:
+      - application/json
+      description: devuelve toda la data relacionada a una retencion
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      - description: retencionId (UUID), created_at(timestamptz)
+        in: query
+        name: RetencionReqId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  $ref: '#/definitions/models.RetencionResponse'
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: detalle de una retencion
+      tags:
+      - Retencion
+  /suscripcion/list:
+    get:
+      consumes:
+      - application/json
+      description: Shows the list of suscripcion for the logged user
+      parameters:
+      - description: Access Token
+        in: header
+        name: x-access-token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.SuccessResponse'
+            - properties:
+                record:
+                  items:
+                    $ref: '#/definitions/models.Suscripcion'
+                  type: array
+              type: object
+        "400":
+          description: Invalid Request or Incorrect Data
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Suscripcion List
+      tags:
+      - Suscripcion
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"

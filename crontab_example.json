@@ -1,0 +1,47 @@
+[
+  {
+    "schedule": "1 * * * *",
+    "task": "clean_old_sessions",
+    "enabled": true
+  },
+  {
+    "schedule": "*/1 * * * *",
+    "task": "create_clients_passwd",
+    "enabled": true
+  },
+  {
+    "schedule": "*/2 * * * *",
+    "task": "sinc_tasa_cambio",
+    "enabled": true
+  },
+  {
+    "schedule": "*/1 * * * *",
+    "task": "sinc_factura_fiscal",
+    "enabled": true
+  },
+  {
+    "schedule": "*/3 * * * *",
+    "task": "sinc_retenciones",
+    "enabled": true
+  },
+  {
+    "schedule": "*/1 * * * *",
+    "task": "sinc_prefactura_anuladas",
+    "enabled": true
+  },
+  {
+    "schedule": "*/1 * * * *",
+    "task": "sinc_prefactura_pagadas",
+    "enabled": true
+  },
+  {
+    "schedule": "*/1 * * * *",
+    "task": "sinc_recibopago_anulados",
+    "enabled": true
+  },
+  {
+    "schedule": "*/1 * * * *",
+    "task": "sinc_recibopago_procesados",
+    "enabled": false
+  }
+]
